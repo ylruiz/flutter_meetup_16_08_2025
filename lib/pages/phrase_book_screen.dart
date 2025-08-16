@@ -137,11 +137,11 @@ class _PhraseCardState extends ConsumerState<_PhraseCard> {
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               style: TextButton.styleFrom(
-                                foregroundColor:
-                                    Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
                                 side: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24),
