@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -21,11 +22,21 @@ class HomeScreen extends ConsumerWidget {
       body: _pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
-        onTap: (index) => ref.read(selectedIndexProvider.notifier).state = index,
+        onTap: (index) =>
+            ref.read(selectedIndexProvider.notifier).state = index,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Prompt'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Game'),
+          BottomNavigationBarItem(
+            icon: Icon(PhosphorIconsRegular.chatText, size: 32.0),
+            label: 'Translator',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(PhosphorIconsRegular.bookOpen, size: 32.0),
+            label: 'Phrase book',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(PhosphorIconsRegular.questionMark, size: 32.0),
+            label: 'Quiz',
+          ),
         ],
       ),
     );
