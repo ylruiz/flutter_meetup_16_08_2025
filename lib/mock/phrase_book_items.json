@@ -1,0 +1,21 @@
+[
+  { "url": "servas.wav", "category": "Greetings", "name": "Hi!" },
+  { "url": "griass_di.wav", "category": "Greetings", "name": "Hello!" },
+  { "url": "pfiat_di.wav", "category": "Greetings", "name": "Take care!" },
+
+  { "url": "heast.wav", "category": "Socialize", "name": "Hey!" },
+  { "url": "oida.wav", "category": "Socialize", "name": "Dude!" },
+  { "url": "geh_bitte.wav", "category": "Socialize", "name": "Come on!" },
+
+  { "url": "wo_is_da_bahnhof.wav", "category": "Directions", "name": "Where is the train station?" },
+  { "url": "wie_kumm_i_zum_stephansdom.wav", "category": "Directions", "name": "How do I get to St. Stephen’s Cathedral?" },
+  { "url": "i_steig_bei_da_nachstn_aus.wav", "category": "Directions", "name": "I get off at the next stop." },
+
+  { "url": "na_geh.wav", "category": "Swearings", "name": "Oh come on!" },
+  { "url": "geh_weida.wav", "category": "Swearings", "name": "Get outta here!" },
+  { "url": "des_is_zach.wav", "category": "Swearings", "name": "That’s tough." },
+
+  { "url": "a_semmel_bitte.wav", "category": "Food", "name": "One bread roll, please." },
+  { "url": "a_haeferl_kaffee_bitte.wav", "category": "Food", "name": "A mug of coffee, please." },
+  { "url": "a_eitrige_mit_an_bugl_und_a_16er_blech.wav", "category": "Food", "name": "A cheese sausage with an end piece and a beer." }
+]

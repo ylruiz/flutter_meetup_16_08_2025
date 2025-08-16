@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import '../pages/phrase_book_screen.dart';
 import '../pages/translate_page.dart';
 import '../pages/game_page.dart';
 

@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:math';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:dio/dio.dart';
+import '../models/game_models.dart';
 
 class ApiClientException implements Exception {
   final String message;
@@ -74,9 +78,31 @@ class ApiClient {
   // Health check or root endpoint
   Future<Response<dynamic>> ping() => _guard(() => dio.get('/ping'));
 
-  // Fetch quiz questions (placeholder)
-  Future<Response<dynamic>> fetchQuizQuestions() =>
-      _guard(() => dio.get('/quiz/questions'));
+  // Fetch quiz questions (mocked from bundled JSON) and return typed list
+  Future<List<Question>> fetchQuizQuestions() => _guard(() async {
+    final jsonStr = await rootBundle.loadString('lib/mock/questions.json');
+    final List<dynamic> list = jsonDecode(jsonStr) as List<dynamic>;
+    final rnd = Random();
+    return list
+        .map((e) {
+          final map = e as Map<String, dynamic>;
+          final answers = (map['answers'] as List<dynamic>)
+              .map((a) {
+                final am = a as Map<String, dynamic>;
+                return Answer(
+                  text: am['text'] as String,
+                  isCorrect: am['isCorrect'] as bool,
+                );
+              })
+              .toList();
+          answers.shuffle(rnd);
+          return Question(
+            audioPath: map['audioPath'] as String,
+            answers: answers,
+          );
+        })
+        .toList(growable: false);
+  });
 
   // Submit quiz result (placeholder)
   Future<Response<dynamic>> submitQuizResult(Map<String, dynamic> payload) =>

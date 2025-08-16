@@ -44,6 +44,7 @@ dependencies:
   speech_to_text: ^7.3.0
   flutter_tts: ^3.8.0
   dio: ^5.5.0+1
+  just_audio: ^0.9.40
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - lib/mock/questions.json
+    - lib/mock/phrase_book_items.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
