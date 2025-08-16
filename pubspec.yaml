@@ -45,6 +45,7 @@ dependencies:
   flutter_tts: ^3.8.0
   dio: ^5.5.0+1
   just_audio: ^0.9.40
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
