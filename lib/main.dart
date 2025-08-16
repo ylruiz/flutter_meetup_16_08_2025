@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'routes.dart';
+import 'navigation/routes.dart';
 
-void main() async {
+void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -13,23 +13,16 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // make sure you don't initiate your router
-    // inside of the build function.
     final appRouter = AppRouter();
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        // Define the default brightness and colors.
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.purple,
-          // ···
           brightness: Brightness.light,
         ),
-
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
         textTheme: TextTheme(
           displayLarge: const TextStyle(
             fontSize: 72,
