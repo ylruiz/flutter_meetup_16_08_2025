@@ -63,6 +63,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   auto_route_generator: ^10.2.3
   build_runner: ^2.5.4
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -79,6 +80,7 @@ flutter:
     - lib/mock/questions.json
     - lib/mock/phrase_book_items.json
     - assets/animations/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -106,4 +108,18 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
-dependency_overrides: {}
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: "AppIcon"
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  # Platforms
+  android: true
+  ios: true
+  # Background color
+  color: "#E6E6FA"
+  # Add your logo
+  image: assets/images/logo.png
