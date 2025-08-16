@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../pages/phrase_book_screen.dart';
 import '../pages/translate_page.dart';
+import '../pages/game_page.dart';
+
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -13,8 +15,8 @@ class HomeScreen extends ConsumerWidget {
 
   static const List<Widget> _pages = <Widget>[
     TranslatePage(),
-    PhraseBookPage(),
-    Center(child: Text('Game content goes here')),
+    Center(child: Text('Prompts content goes here')),
+    GamePage(),
   ];
 
   @override
