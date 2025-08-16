@@ -21,7 +21,6 @@ class HomeScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
       body: _pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
