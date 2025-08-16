@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:math';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:dio/dio.dart';
 import '../models/game_models.dart';
 import '../models/phrase_book_item.dart';
@@ -79,26 +77,50 @@ class ApiClient {
   // Health check or root endpoint
   Future<Response<dynamic>> ping() => _guard(() => dio.get('/ping'));
 
-  // Fetch quiz questions (mocked from bundled JSON) and return typed list
+  // Fetch quiz questions from server and return typed list
   Future<List<Question>> fetchQuizQuestions() => _guard(() async {
-    final jsonStr = await rootBundle.loadString('lib/mock/questions.json');
-    final List<dynamic> list = jsonDecode(jsonStr) as List<dynamic>;
+    final resp = await dio.post(
+      'https://serverpod-api-773078918212.europe-west3.run.app/question',
+      data: const {'method': 'getQuestions'},
+      options: Options(contentType: Headers.jsonContentType),
+    );
+
+    final data = resp.data;
+    List<dynamic> list;
+    if (data is List) {
+      list = data;
+    } else if (data is Map && data['result'] is List) {
+      list = data['result'] as List<dynamic>;
+    } else if (data is Map && data['data'] is List) {
+      list = data['data'] as List<dynamic>;
+    } else {
+      throw ApiClientException(
+        message: 'Unexpected response format',
+        statusCode: resp.statusCode,
+        data: data,
+      );
+    }
+
     final rnd = Random();
     return list
         .map((e) {
           final map = e as Map<String, dynamic>;
-          final answers = (map['answers'] as List<dynamic>).map((a) {
+          final audioPath =
+              (map['audioPath'] ?? map['audio'] ?? map['url'] ?? '') as String;
+          final answersRaw =
+              (map['answers'] ?? map['options'] ?? map['choices'])
+                  as List<dynamic>;
+          final answers = answersRaw.map((a) {
             final am = a as Map<String, dynamic>;
-            return Answer(
-              text: am['text'] as String,
-              isCorrect: am['isCorrect'] as bool,
-            );
+            final text =
+                (am['text'] ?? am['label'] ?? am['answer'] ?? '') as String;
+            final isCorrect =
+                (am['isCorrect'] ?? am['correct'] ?? am['is_right'] ?? false)
+                    as bool;
+            return Answer(text: text, isCorrect: isCorrect);
           }).toList();
           answers.shuffle(rnd);
-          return Question(
-            audioPath: map['audioPath'] as String,
-            answers: answers,
-          );
+          return Question(audioPath: audioPath, answers: answers);
         })
         .toList(growable: false);
   });
@@ -116,20 +138,38 @@ class ApiClient {
     () => dio.post('/translate', data: {'text': text, 'from': from, 'to': to}),
   );
 
-  // Get phrase book entries (mocked from bundled JSON)
+  // Get phrase book entries from server
   Future<List<PhraseBookItem>> fetchPhraseBook() => _guard(() async {
-    final jsonStr = await rootBundle.loadString(
-      'lib/mock/phrase_book_items.json',
+    final resp = await dio.post(
+      'https://serverpod-api-773078918212.europe-west3.run.app/soundBites',
+      data: const {'method': 'getSoundBites'},
+      options: Options(contentType: Headers.jsonContentType),
     );
-    final List<dynamic> list = jsonDecode(jsonStr) as List<dynamic>;
+
+    final data = resp.data;
+    List<dynamic> list;
+    if (data is List) {
+      list = data;
+    } else if (data is Map && data['result'] is List) {
+      list = data['result'] as List<dynamic>;
+    } else if (data is Map && data['data'] is List) {
+      list = data['data'] as List<dynamic>;
+    } else {
+      throw ApiClientException(
+        message: 'Unexpected response format',
+        statusCode: resp.statusCode,
+        data: data,
+      );
+    }
+
     return list
         .map((e) {
           final m = e as Map<String, dynamic>;
-          return PhraseBookItem(
-            url: m['url'] as String,
-            category: m['category'] as String,
-            name: m['name'] as String,
-          );
+          final url = (m['url'] ?? m['fileName'] ?? m['audio'] ?? '') as String;
+          final category =
+              (m['category'] ?? m['group'] ?? m['type'] ?? 'General') as String;
+          final name = (m['name'] ?? m['title'] ?? m['label'] ?? url) as String;
+          return PhraseBookItem(url: url, category: category, name: name);
         })
         .toList(growable: false);
   });
