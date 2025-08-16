@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_meetup_16_08_2025/navigation/paths.dart';
-import 'package:flutter_meetup_16_08_2025/navigation/routes.gr.dart';
+import 'package:flutter_meetup_16_08_2025/paths.dart';
+import 'package:flutter_meetup_16_08_2025/routes.gr.dart';
 
 import 'onboarding_guard.dart';
 

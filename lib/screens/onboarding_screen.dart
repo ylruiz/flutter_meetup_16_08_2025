@@ -7,7 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../data/pages_list.dart';
-import '../navigation/paths.dart';
+import '../paths.dart';
 
 /// local provider for current page index
 final onboardingPageProvider = StateProvider<int>((ref) => 0);

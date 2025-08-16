@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'navigation/routes.dart';
+import 'routes.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
