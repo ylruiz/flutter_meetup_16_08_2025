@@ -1,6 +1,8 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../models/game_models.dart';
+import '../network/api_providers.dart';
+import '../network/api_client.dart';
 
 // Default demo questions live here so UI stays stateless
 final defaultQuestionsProvider = Provider<List<Question>>(
@@ -67,13 +69,16 @@ class GameState {
 }
 
 class GameController extends StateNotifier<GameState> {
-  GameController(List<Question> questions)
+  GameController(ApiClient api, List<Question> questions)
     : _tts = FlutterTts(),
+      _api = api,
       super(GameState(questions: questions)) {
     _configureTts();
   }
 
   final FlutterTts _tts;
+  // ignore: unused_field
+  final ApiClient _api;
 
   void _configureTts() {
     _tts
@@ -140,12 +145,13 @@ class GameController extends StateNotifier<GameState> {
 
 final gameControllerProvider =
     StateNotifierProvider.family<GameController, GameState, List<Question>>(
-      (ref, questions) => GameController(questions),
+      (ref, questions) =>
+          GameController(ref.read(apiClientProvider), questions),
     );
 
 // Non-family default controller using defaultQuestionsProvider
 final gameControllerDefaultProvider =
     StateNotifierProvider<GameController, GameState>((ref) {
       final qs = ref.watch(defaultQuestionsProvider);
-      return GameController(qs);
+      return GameController(ref.read(apiClientProvider), qs);
     });
