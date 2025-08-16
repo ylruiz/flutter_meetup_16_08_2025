@@ -1,17 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../pages/translate_page.dart';
 
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
+
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
 
   static const List<Widget> _pages = <Widget>[
     TranslatePage(),
@@ -19,26 +16,25 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(child: Text('Game content goes here')),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(selectedIndexProvider);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: _pages[_selectedIndex],
+      body: _pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: selectedIndex,
+        onTap: (index) =>
+            ref.read(selectedIndexProvider.notifier).state = index,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.mic), label: 'Record'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Prompt'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.videogame_asset),
-            label: 'Game',
+            icon: Icon(PhosphorIconsRegular.chatText, size: 32.0),
+            label: 'Translator',
+          ),
+          BottomNavigationBarItem(icon: Icon(PhosphorIconsRegular.bookOpen), label: 'Phrase Book'),
+          BottomNavigationBarItem(
+            icon: Icon(PhosphorIconsRegular.questionMark),
+            label: 'Quiz',
           ),
         ],
       ),
