@@ -18,7 +18,7 @@ class TranslatePage extends ConsumerWidget {
 
     final theme = Theme.of(context);
     final text = state.text.isEmpty
-        ? (state.isListening ? 'Zuhören...' : 'Zum Aufnehmen tippen')
+        ? (state.isListening ? 'Listening...' : 'Give us some Hochdeutsch')
         : state.text;
 
     return Scaffold(
