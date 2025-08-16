@@ -27,7 +27,7 @@ class SegmentedProgress extends StatelessWidget {
               color = theme.colorScheme.outline; // incorrect => dark grey
             } else {
               color =
-                  theme.colorScheme.surfaceVariant; // unanswered => light grey
+                  theme.colorScheme.surfaceContainerHighest; // unanswered => light grey
             }
             final BorderRadius radius = i == 0
                 ? const BorderRadius.only(

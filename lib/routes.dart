@@ -1,22 +1,25 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_meetup_16_08_2025/paths.dart';
-import 'package:flutter_meetup_16_08_2025/routes.gr.dart';
+
+import 'on_boarding_guard.dart';
+import 'paths.dart';
+import 'routes.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
+  AppRouter({super.navigatorKey});
+
+  final onboardingGuard = OnboardingGuard();
+
   @override
-  RouteType get defaultRouteType => RouteType.material(); //.cupertino, .adaptive ..etc
+  RouteType get defaultRouteType => RouteType.material();
 
   @override
   List<AutoRoute> get routes => [
     AutoRoute(path: Paths.onboarding, page: OnboardingRoute.page),
-    // HomeScreen is generated as HomeRoute because
-    // of the replaceInRouteName property
-    AutoRoute(path: Paths.home, page: HomeRoute.page),
-  ];
-
-  @override
-  List<AutoRouteGuard> get guards => [
-    // optionally add root guards here
+    AutoRoute(
+      path: Paths.home,
+      page: HomeRoute.page,
+      guards: [onboardingGuard],
+    ),
   ];
 }
