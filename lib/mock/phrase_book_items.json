@@ -1,6 +1,5 @@
 [
-  { "url": "servas.wav", "category": "Greetings", "name": "Hi!" },
-  { "url": "griass_di.wav", "category": "Greetings", "name": "Hello!" },
+  { "url": "servus.wav", "category": "Greetings", "name": "Hi!" },
   { "url": "pfiat_di.wav", "category": "Greetings", "name": "Take care!" },
 
   { "url": "heast.wav", "category": "Socialize", "name": "Hey!" },
@@ -12,7 +11,7 @@
   { "url": "i_steig_bei_da_nachstn_aus.wav", "category": "Directions", "name": "I get off at the next stop." },
 
   { "url": "na_geh.wav", "category": "Swearings", "name": "Oh come on!" },
-  { "url": "geh_weida.wav", "category": "Swearings", "name": "Get outta here!" },
+  { "url": "ge_weida.wav", "category": "Swearings", "name": "Get outta here!" },
   { "url": "des_is_zach.wav", "category": "Swearings", "name": "That’s tough." },
 
   { "url": "a_semmel_bitte.wav", "category": "Food", "name": "One bread roll, please." },
