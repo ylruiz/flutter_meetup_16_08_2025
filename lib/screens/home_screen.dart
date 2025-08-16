@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import '../pages/translate_page.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -10,7 +11,7 @@ class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   static const List<Widget> _pages = <Widget>[
-    Center(child: Text('Translate content goes here')),
+    TranslatePage(),
     Center(child: Text('Prompts content goes here')),
     Center(child: Text('Game content goes here')),
   ];
@@ -32,7 +33,10 @@ class HomeScreen extends ConsumerWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Prompt'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Game'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.videogame_asset),
+            label: 'Game',
+          ),
         ],
       ),
     );

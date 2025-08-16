@@ -20,9 +20,10 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         // Define the default brightness and colors.
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.redAccent,
+          seedColor: Colors.purple,
           // ···
           brightness: Brightness.dark,
         ),
@@ -44,6 +45,7 @@ class MyApp extends ConsumerWidget {
         ),
       ),
       routerConfig: appRouter.config(),
+      title: 'Speech Demo',
     );
   }
 }
