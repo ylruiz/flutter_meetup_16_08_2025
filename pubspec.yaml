@@ -39,6 +39,7 @@ dependencies:
   auto_route: ^10.1.0+1
   riverpod_annotation: ^2.6.1
   speech_to_text: ^7.3.0
+  flutter_tts: ^3.8.0
 
 dev_dependencies:
   flutter_test:

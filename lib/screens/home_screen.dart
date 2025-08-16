@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../pages/translate_page.dart';
+import '../pages/game_page.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const List<Widget> _pages = <Widget>[
     TranslatePage(),
     Center(child: Text('Prompts content goes here')),
-    Center(child: Text('Game content goes here')),
+    GamePage(),
   ];
 
   void _onItemTapped(int index) {
