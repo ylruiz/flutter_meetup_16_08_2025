@@ -15,7 +15,7 @@ class HomeScreen extends ConsumerWidget {
 
   static const List<Widget> _pages = <Widget>[
     TranslatePage(),
-    Center(child: Text('Prompts content goes here')),
+    PhraseBookPage(),
     GamePage(),
   ];
 

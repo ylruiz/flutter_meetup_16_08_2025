@@ -1,0 +1,92 @@
+[
+  {
+    "audioPath": "koenn_ma_bitte_zoin.wav",
+    "answers": [
+      { "text": "Can we pay, please?", "isCorrect": true },
+      { "text": "Can we sit here?", "isCorrect": false },
+      { "text": "Can we order later?", "isCorrect": false },
+      { "text": "Do you take cards?", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "passt_scho.wav",
+    "answers": [
+      { "text": "It's fine.", "isCorrect": true },
+      { "text": "It's broken.", "isCorrect": false },
+      { "text": "It's too late.", "isCorrect": false },
+      { "text": "It's expensive.", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "mach_nix.wav",
+    "answers": [
+      { "text": "No worries.", "isCorrect": true },
+      { "text": "I'm hungry.", "isCorrect": false },
+      { "text": "Hurry up.", "isCorrect": false },
+      { "text": "Be quiet.", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "i_haett_gern_a_kaffee_bitte.wav",
+    "answers": [
+      { "text": "I'd like a coffee, please.", "isCorrect": true },
+      { "text": "I don't drink coffee.", "isCorrect": false },
+      { "text": "Where is the coffee?", "isCorrect": false },
+      { "text": "Make the coffee stronger.", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "wo_is_da_bahnhof.wav",
+    "answers": [
+      { "text": "Where is the train station?", "isCorrect": true },
+      { "text": "When is the next train?", "isCorrect": false },
+      { "text": "How much is the ticket?", "isCorrect": false },
+      { "text": "Which platform is it?", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "heast_wart_amoi.wav",
+    "answers": [
+      { "text": "Hey, wait a moment!", "isCorrect": true },
+      { "text": "Hey, come in!", "isCorrect": false },
+      { "text": "Hey, listen!", "isCorrect": false },
+      { "text": "Hey, good luck!", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "i_bin_gleich_do.wav",
+    "answers": [
+      { "text": "I'll be there soon.", "isCorrect": true },
+      { "text": "I was there yesterday.", "isCorrect": false },
+      { "text": "I am already there.", "isCorrect": false },
+      { "text": "I can't come today.", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "kannst_ma_des_zeigen.wav",
+    "answers": [
+      { "text": "Can you show me that?", "isCorrect": true },
+      { "text": "Can you fix this?", "isCorrect": false },
+      { "text": "Can you buy that?", "isCorrect": false },
+      { "text": "Can you hold this?", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "i_brauch_an_sackerl_bitte.wav",
+    "answers": [
+      { "text": "I need a bag, please.", "isCorrect": true },
+      { "text": "I need a receipt, please.", "isCorrect": false },
+      { "text": "I need change, please.", "isCorrect": false },
+      { "text": "I need help, please.", "isCorrect": false }
+    ]
+  },
+  {
+    "audioPath": "entschuldigung_wo_gehts_zum_zentrum.wav",
+    "answers": [
+      { "text": "Excuse me, how do I get to the center?", "isCorrect": true },
+      { "text": "Excuse me, what time is it?", "isCorrect": false },
+      { "text": "Excuse me, where do I pay?", "isCorrect": false },
+      { "text": "Excuse me, is this free?", "isCorrect": false }
+    ]
+  }
+]

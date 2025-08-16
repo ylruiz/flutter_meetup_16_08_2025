@@ -1,5 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:just_audio/just_audio.dart';
 import '../models/game_models.dart';
 import '../network/api_providers.dart';
 import '../network/api_client.dart';
@@ -27,6 +28,12 @@ final defaultQuestionsProvider = Provider<List<Question>>(
     ),
   ],
 );
+
+/// Loads questions via ApiClient (mocked JSON)
+final questionsFromApiProvider = FutureProvider<List<Question>>((ref) async {
+  final api = ref.read(apiClientProvider);
+  return api.fetchQuizQuestions();
+});
 
 class GameState {
   final List<Question> questions;
@@ -71,12 +78,14 @@ class GameState {
 class GameController extends StateNotifier<GameState> {
   GameController(ApiClient api, List<Question> questions)
     : _tts = FlutterTts(),
+      _player = AudioPlayer(),
       _api = api,
       super(GameState(questions: questions)) {
     _configureTts();
   }
 
   final FlutterTts _tts;
+  final AudioPlayer _player;
   // ignore: unused_field
   final ApiClient _api;
 
@@ -90,11 +99,24 @@ class GameController extends StateNotifier<GameState> {
 
   Future<void> playCurrent() async {
     final q = state.current;
-    // Support tts:TEXT for now; add assets/urls later
+    // tts:TEXT -> speak
     if (q.audioPath.startsWith('tts:')) {
       final text = q.audioPath.substring(4);
+      await _player.stop();
       await _tts.stop();
       await _tts.speak(text);
+      return;
+    }
+    // filename.wav -> stream from CDN base URL
+    final base = 'https://studio--leafylib.us-central1.hosted.app/images';
+    final url = '$base/${q.audioPath}';
+    try {
+      await _tts.stop();
+      await _player.stop();
+      await _player.setUrl(url);
+      await _player.play();
+    } catch (_) {
+      // swallow playback errors for now
     }
   }
 
@@ -139,6 +161,7 @@ class GameController extends StateNotifier<GameState> {
   @override
   void dispose() {
     _tts.stop();
+    _player.dispose();
     super.dispose();
   }
 }
@@ -152,6 +175,12 @@ final gameControllerProvider =
 // Non-family default controller using defaultQuestionsProvider
 final gameControllerDefaultProvider =
     StateNotifierProvider<GameController, GameState>((ref) {
-      final qs = ref.watch(defaultQuestionsProvider);
-      return GameController(ref.read(apiClientProvider), qs);
+      final api = ref.read(apiClientProvider);
+      final fallback = ref.read(defaultQuestionsProvider);
+      final asyncQs = ref.watch(questionsFromApiProvider);
+      final questions = asyncQs.maybeWhen(
+        data: (qs) => qs,
+        orElse: () => fallback,
+      );
+      return GameController(api, questions);
     });
