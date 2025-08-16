@@ -29,13 +29,13 @@ class HomeScreen extends ConsumerWidget {
             ref.read(selectedIndexProvider.notifier).state = index,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(PhosphorIconsRegular.translate, size: 32.0),
-            label: 'Home',
+            icon: Icon(PhosphorIconsRegular.chatText, size: 32.0),
+            label: 'Translator',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Prompt'),
+          BottomNavigationBarItem(icon: Icon(PhosphorIconsRegular.bookOpen), label: 'Phrase Book'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.videogame_asset),
-            label: 'Game',
+            icon: Icon(PhosphorIconsRegular.questionMark),
+            label: 'Quiz',
           ),
         ],
       ),

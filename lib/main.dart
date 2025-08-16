@@ -25,7 +25,7 @@ class MyApp extends ConsumerWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.purple,
           // ···
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         ),
 
         // Define the default `TextTheme`. Use this to specify the default
@@ -35,7 +35,6 @@ class MyApp extends ConsumerWidget {
             fontSize: 72,
             fontWeight: FontWeight.bold,
           ),
-          // ···
           titleLarge: GoogleFonts.oswald(
             fontSize: 30,
             fontStyle: FontStyle.italic,
