@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Diese App benötigt Zugriff auf das Mikrofon für die Spracherkennung.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Diese App verwendet Spracherkennung, um gesprochene Wörter in Text umzuwandeln.</string>
 </dict>
 </plist>
